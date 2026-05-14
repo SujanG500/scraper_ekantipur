@@ -1,0 +1,49 @@
+# prompts.txt
+# List of all prompts used when developing this scraper with AI assistance
+# (as required by the Audio Bee submission checklist)
+# ─────────────────────────────────────────────────────────────────────────────
+
+PROMPT 1 (Project structure & skeleton):
+"Write a Playwright Python scraper skeleton for ekantipur.com that has two
+separate functions: one for extracting the top 5 entertainment news articles
+and one for the cartoon of the day. Each function should accept a `page`
+object and a `base_url` string. Include safe helper functions for extracting
+text and attributes that return None instead of raising on missing elements."
+
+PROMPT 2 (Selector strategy for nav):
+"The entertainment section on ekantipur.com is labelled 'मनोरञ्जन' in the
+navigation bar. Write code that finds that nav link by its text content,
+falls back to constructing the URL /entertainment if not found, and navigates
+to it."
+
+PROMPT 3 (Multiple card selector fallback):
+"I need to try several CSS selectors in order and use the first one that
+returns at least 3 results. Here are the selectors to try:
+.normal-news-block, .np-news-post, article.post, .news-article,
+div.article, .story-card. Show me a clean loop that does this."
+
+PROMPT 4 (Lazy-loaded image handling):
+"Some images on ekantipur.com use data-src or data-lazy-src instead of src
+for lazy loading. Show me how to check all three attributes (src, data-src,
+data-lazy-src) in order and use the first non-null result."
+
+PROMPT 5 (Cartoon section detection via JS evaluate):
+"The cartoon section on ekantipur.com may not have a stable CSS class. Write
+JavaScript (for Playwright's page.evaluate_handle) that finds any heading
+element whose text contains 'ग्यात्र' and returns its closest section,
+article, or div.widget ancestor."
+
+PROMPT 6 (Relative URL resolution):
+"Write a Python helper function called absolute_url(base, href) that converts
+relative hrefs like /uploads/image.jpg or //cdn.example.com/img.jpg into
+full https:// URLs using the site's base domain."
+
+PROMPT 7 (JSON output with Nepali text):
+"How do I write a Python dict to a JSON file so that Devanagari (Nepali)
+characters are preserved instead of being escaped as \\uXXXX sequences?"
+Answer used: json.dump(..., ensure_ascii=False, indent=2)
+
+PROMPT 8 (Error handling pattern):
+"Wrap my Playwright element access code in a try/except so that any missing
+element or None value returns None instead of crashing. Make it a reusable
+helper."
